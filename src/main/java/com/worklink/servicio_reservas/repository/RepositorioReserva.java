@@ -1,0 +1,33 @@
+package com.worklink.servicio_reservas.repository;
+
+import com.worklink.servicio_reservas.model.Reserva;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import java.time.LocalDate;
+import java.util.List;
+
+
+@Repository
+public interface RepositorioReserva extends JpaRepository<Reserva, String> {
+
+    @Query(
+        """
+        SELECT r FROM Reserva r 
+        WHERE r.proveedorId = :proveedorId 
+        AND r.clienteId = :clienteId 
+        AND r.fechaReserva = :fechaReserva 
+        AND r.rangoTiempoReservado = :rangoTiempoReservado
+        """
+    )
+    List<Reserva> findReservaByRangoTiempoReservado(
+        @Param("proveedorId") Long proveedorId,
+        @Param("clienteId") Long clienteId,
+        @Param("fechaReserva") LocalDate fechaReserva,
+        @Param("rangoTiempoReservado") String rangoTiempoReservado
+    );
+
+
+}
