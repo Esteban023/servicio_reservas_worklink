@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -28,7 +29,13 @@ public class ReservaController {
     private ServicioReserva servicioReserva;
 
     @PostMapping
-    public ResponseEntity<ReservaResponse> crearReserva(@RequestBody ReservaDTO reservaDTO) {
+    public ResponseEntity<ReservaResponse> crearReserva(@RequestBody ReservaDTO reservaDTO, @RequestParam Boolean pagadBoolean) {
+
+        if (!pagadBoolean) {
+            return ResponseEntity.status(400).body(
+                new ReservaResponse(false, "El pago de la reserva es obligatorio para crear una reserva.")
+            );
+        }
         
         List<Reserva> reservasExistentes = servicioReserva.obtenerReservasoPorRangoTiempo(
             reservaDTO.getProveedorId(),
