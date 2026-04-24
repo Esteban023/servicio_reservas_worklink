@@ -21,8 +21,22 @@ public interface RepositorioReserva extends JpaRepository<Reserva, String> {
         AND r.rangoTiempoReservado = :rangoTiempoReservado
         """
     )
-    List<Reserva> findReservaByRangoTiempoReservado(
+    List<Reserva> findReservaClienteByRangoTiempoReservado(
         @Param("clienteId") Long clienteId,
+        @Param("fechaReserva") LocalDate fechaReserva,
+        @Param("rangoTiempoReservado") String rangoTiempoReservado
+    );
+
+    @Query(
+        """
+        SELECT r FROM Reserva r 
+        WHERE r.proveedorId = :proveedorId 
+        AND r.fechaReserva = :fechaReserva 
+        AND r.rangoTiempoReservado = :rangoTiempoReservado
+        """
+    )
+    List<Reserva> findReservaProveedorByRangoTiempoReservado(
+        @Param("proveedorId") Long proveedorId,
         @Param("fechaReserva") LocalDate fechaReserva,
         @Param("rangoTiempoReservado") String rangoTiempoReservado
     );

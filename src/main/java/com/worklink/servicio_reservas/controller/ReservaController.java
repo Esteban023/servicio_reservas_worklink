@@ -39,7 +39,9 @@ public class ReservaController {
             );
         }
 
-        return ResponseEntity.ok(new ReservaResponse(true, resultado.getMensaje()));
+        return ResponseEntity.status(200).body(
+            new ReservaResponse(true, resultado.getMensaje())
+        );
     }
 
     @PutMapping("/cancelar_reserva/{codigoReserva}")
@@ -52,7 +54,7 @@ public class ReservaController {
             );
         }
 
-        return ResponseEntity.ok(
+        return ResponseEntity.status(resultado.getCodigoEstado()).body(
             new ReservaResponse(true, resultado.getMensaje(), resultado.getDatos())
         );
     }
@@ -67,7 +69,7 @@ public class ReservaController {
             );
         }
 
-        return ResponseEntity.ok(
+        return ResponseEntity.status(200).body(
             new ReservaResponse(true, "Reserva encontrada exitosamente.", ReservaMapper.toDTO(reserva.get()))
         );
     }
@@ -77,7 +79,7 @@ public class ReservaController {
         List<Reserva> reservas = servicioReserva.obtenerReservasPorCliente(idCliente);
         List<ReservaDTO> reservasDTO = ReservaMapper.toDTOList(reservas);
 
-        return ResponseEntity.ok(reservasDTO);
+        return ResponseEntity.status(200).body(reservasDTO);
     }
 
     @GetMapping("misReservasProveedor/{idProveedor}")
@@ -85,7 +87,7 @@ public class ReservaController {
         List<Reserva> reservas = servicioReserva.obtenerReservasPorProveedor(idProveedor);
         List<ReservaDTO> reservasDTO = ReservaMapper.toDTOList(reservas);
 
-        return ResponseEntity.ok(reservasDTO);
+        return ResponseEntity.status(200).body(reservasDTO);
     }
     
     

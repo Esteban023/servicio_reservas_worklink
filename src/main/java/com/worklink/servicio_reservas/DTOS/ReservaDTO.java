@@ -66,6 +66,9 @@ public class ReservaDTO {
     @NotNull(message = "El id del proveedor no puede ser nulo")
     Long proveedorId;
 
+    @NotNull(message = "Debe realizarse el pago de la reserva")
+    Boolean esPagada;
+
 
     EstadoReserva estadoReserva;
 
@@ -194,5 +197,12 @@ public class ReservaDTO {
         this.estadoReserva = estadoReserva;
     }
 
+    public Boolean esPagada() {
+        return esPagada;
+    }
+
+    public void setEsPagada(Boolean esPagada) {
+        this.esPagada = esPagada;
+    }
 
 }
