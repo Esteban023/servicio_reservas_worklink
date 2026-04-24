@@ -16,14 +16,12 @@ public interface RepositorioReserva extends JpaRepository<Reserva, String> {
     @Query(
         """
         SELECT r FROM Reserva r 
-        WHERE r.proveedorId = :proveedorId 
-        AND r.clienteId = :clienteId 
+        WHERE r.clienteId = :clienteId 
         AND r.fechaReserva = :fechaReserva 
         AND r.rangoTiempoReservado = :rangoTiempoReservado
         """
     )
     List<Reserva> findReservaByRangoTiempoReservado(
-        @Param("proveedorId") Long proveedorId,
         @Param("clienteId") Long clienteId,
         @Param("fechaReserva") LocalDate fechaReserva,
         @Param("rangoTiempoReservado") String rangoTiempoReservado
@@ -44,6 +42,7 @@ public interface RepositorioReserva extends JpaRepository<Reserva, String> {
         """
     )
     List<Reserva> findReservaByProveedorId(@Param("proveedorId") Long proveedorId);
+
 
 
 

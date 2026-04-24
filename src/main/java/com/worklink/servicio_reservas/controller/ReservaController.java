@@ -37,16 +37,27 @@ public class ReservaController {
             );
         }
         
-        List<Reserva> reservasExistentes = servicioReserva.obtenerReservasoPorRangoTiempo(
-            reservaDTO.getProveedorId(),
+        List<Reserva> reservasClienteExistentes = servicioReserva.obtenerReservasClientePorRangoTiempo(
             reservaDTO.getClienteId(),
             reservaDTO.getFechaReserva(),
             reservaDTO.getRangoTiempoReservado()
         );
         
-        if (!reservasExistentes.isEmpty()) {
+        if (!reservasClienteExistentes.isEmpty()) {
             return ResponseEntity.status(409).body(
                 new ReservaResponse(false, "Ya existe una reserva en el rango de tiempo especificado.")
+            );
+        }
+
+        List<Reserva> reservasProveedorExistentes = servicioReserva.obtenerReservasProveedorPorRangoTiempo(
+            reservaDTO.getProveedorId(),
+            reservaDTO.getFechaReserva(),
+            reservaDTO.getRangoTiempoReservado()
+        );
+
+        if (!reservasProveedorExistentes.isEmpty()) {
+            return ResponseEntity.status(409).body(
+                new ReservaResponse(false, "Ya existe una reserva en el rango de tiempo especificado para el proveedor.")
             );
         }
 
@@ -121,7 +132,7 @@ public class ReservaController {
     public ResponseEntity<List<ReservaDTO>> obtenerReservasPorProveedor(@PathVariable Long idProveedor) {
         List<Reserva> reservas = servicioReserva.obtenerReservasPorProveedor(idProveedor);
         List<ReservaDTO> reservasDTO = ReservaMapper.toDTOList(reservas);
-        
+
         return ResponseEntity.ok(reservasDTO);
     }
     
