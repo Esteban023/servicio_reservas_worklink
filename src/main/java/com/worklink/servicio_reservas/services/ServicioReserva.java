@@ -48,4 +48,12 @@ public class ServicioReserva {
         return repositorioReserva.save(reservaExistente);
     }
 
+    public List<Reserva> obtenerReservasPorCliente(Long idCliente) {
+        return repositorioReserva.findReservaByClienteId(idCliente);
+    }
+
+    public List<Reserva> obtenerReservasPorProveedor(Long idProveedor) {
+        return repositorioReserva.findReservaByProveedorId(idProveedor);
+    }
+
 }

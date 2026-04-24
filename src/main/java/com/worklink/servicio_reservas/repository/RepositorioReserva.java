@@ -29,5 +29,25 @@ public interface RepositorioReserva extends JpaRepository<Reserva, String> {
         @Param("rangoTiempoReservado") String rangoTiempoReservado
     );
 
+    @Query(
+        """
+        SELECT r FROM Reserva r 
+        WHERE r.clienteId = :clienteId
+        """
+    )
+    List<Reserva> findReservaByClienteId(@Param("clienteId") Long clienteId);
+
+    @Query(
+        """
+        SELECT r FROM Reserva r 
+        WHERE r.proveedorId = :proveedorId
+        """
+    )
+    List<Reserva> findReservaByProveedorId(@Param("proveedorId") Long proveedorId);
+
+
+
+    
+
 
 }

@@ -108,4 +108,22 @@ public class ReservaController {
             new ReservaResponse(true, "Reserva encontrada exitosamente.", ReservaMapper.toDTO(reserva.get()))
         );
     }
+
+    @GetMapping("misReservasCliente/{idCliente}")
+    public ResponseEntity<List<ReservaDTO>> obtenerReservasPorCliente(@PathVariable Long idCliente) {
+        List<Reserva> reservas = servicioReserva.obtenerReservasPorCliente(idCliente);
+        List<ReservaDTO> reservasDTO = ReservaMapper.toDTOList(reservas);
+
+        return ResponseEntity.ok(reservasDTO);
+    }
+
+    @GetMapping("misReservasProveedor/{idProveedor}")
+    public ResponseEntity<List<ReservaDTO>> obtenerReservasPorProveedor(@PathVariable Long idProveedor) {
+        List<Reserva> reservas = servicioReserva.obtenerReservasPorProveedor(idProveedor);
+        List<ReservaDTO> reservasDTO = ReservaMapper.toDTOList(reservas);
+        
+        return ResponseEntity.ok(reservasDTO);
+    }
+    
+    
 }

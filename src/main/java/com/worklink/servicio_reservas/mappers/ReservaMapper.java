@@ -1,5 +1,7 @@
 package com.worklink.servicio_reservas.mappers;
 
+import java.util.List;
+
 import com.worklink.servicio_reservas.DTOS.ReservaDTO;
 import com.worklink.servicio_reservas.model.Reserva;
 
@@ -45,5 +47,11 @@ public class ReservaMapper {
         dto.setEstadoReserva(reserva.getEstadoReserva());
 
         return dto;
+    }
+
+    public static List<ReservaDTO> toDTOList(List<Reserva> reservas) {
+        return reservas.stream()
+            .map(ReservaMapper::toDTO)
+            .toList();
     }
 }
