@@ -28,7 +28,7 @@ public class ReservaDTO {
     String categoriaServicio;
 
     @NotBlank(message = "La modalidad es obligatoria")
-    @Pattern(regexp = "PRESENCIAL|ONLINE", message = "El campo modalidad debe ser PRESENCIAL u ONLINE")
+    @Pattern(regexp = "Presencial|Online", message = "El campo modalidad debe ser PRESENCIAL u ONLINE")
     private String modalidad;
 
     @NotNull(message = "La ubicación no puede ser nula")
