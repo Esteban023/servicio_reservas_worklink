@@ -1,5 +1,6 @@
 package com.worklink.servicio_reservas.repository;
 
+import com.worklink.servicio_reservas.enums.EstadoReserva;
 import com.worklink.servicio_reservas.model.Reserva;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -19,12 +20,14 @@ public interface RepositorioReserva extends JpaRepository<Reserva, String> {
         WHERE r.clienteId = :clienteId 
         AND r.fechaReserva = :fechaReserva 
         AND r.rangoTiempoReservado = :rangoTiempoReservado
+        AND r.estadoReserva <> :estadoCancelado
         """
     )
     List<Reserva> findReservaClienteByRangoTiempoReservado(
         @Param("clienteId") Long clienteId,
         @Param("fechaReserva") LocalDate fechaReserva,
-        @Param("rangoTiempoReservado") String rangoTiempoReservado
+        @Param("rangoTiempoReservado") String rangoTiempoReservado,
+        @Param("estadoCancelado") EstadoReserva estadoCancelado
     );
 
     @Query(
@@ -33,12 +36,14 @@ public interface RepositorioReserva extends JpaRepository<Reserva, String> {
         WHERE r.proveedorId = :proveedorId 
         AND r.fechaReserva = :fechaReserva 
         AND r.rangoTiempoReservado = :rangoTiempoReservado
+        AND r.estadoReserva <> :estadoCancelado
         """
     )
     List<Reserva> findReservaProveedorByRangoTiempoReservado(
         @Param("proveedorId") Long proveedorId,
         @Param("fechaReserva") LocalDate fechaReserva,
-        @Param("rangoTiempoReservado") String rangoTiempoReservado
+        @Param("rangoTiempoReservado") String rangoTiempoReservado,
+        @Param("estadoCancelado") EstadoReserva estadoCancelado
     );
 
     @Query(

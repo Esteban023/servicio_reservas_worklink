@@ -40,7 +40,7 @@ public class ReservaController {
         }
 
         return ResponseEntity.status(200).body(
-            new ReservaResponse(true, resultado.getMensaje())
+            new ReservaResponse(true, resultado.getMensaje(), ReservaMapper.toDTO(resultado.getDatos()))
         );
     }
 

@@ -20,11 +20,11 @@ public class ServicioReserva {
     private RepositorioReserva repositorioReserva;
 
     public List<Reserva> obtenerReservasClientePorRangoTiempo(Long clienteId, LocalDate fechaReserva, String rangoTiempoReservado) {
-        return repositorioReserva.findReservaClienteByRangoTiempoReservado(clienteId, fechaReserva, rangoTiempoReservado);
+        return repositorioReserva.findReservaClienteByRangoTiempoReservado(clienteId, fechaReserva, rangoTiempoReservado, EstadoReserva.CANCELADA);
     }
 
     public List<Reserva> obtenerReservasProveedorPorRangoTiempo(Long proveedorId, LocalDate fechaReserva, String rangoTiempoReservado) {
-        return repositorioReserva.findReservaProveedorByRangoTiempoReservado(proveedorId, fechaReserva, rangoTiempoReservado);
+        return repositorioReserva.findReservaProveedorByRangoTiempoReservado(proveedorId, fechaReserva, rangoTiempoReservado, EstadoReserva.CANCELADA);
     }
 
     public Optional<Reserva> obtenerReservaPorCodigo(String codigoReserva) {
