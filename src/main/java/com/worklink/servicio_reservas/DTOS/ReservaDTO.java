@@ -13,7 +13,7 @@ import jakarta.validation.constraints.NotBlank;
 
 public class ReservaDTO {
     
-    String idReserva;
+    private String idReserva;
 
     @NotNull(message = "El rango de tiempo reservado no puede ser nulo")
     @NotBlank(message = "El rango de tiempo reservado no puede estar vacío")
@@ -21,11 +21,11 @@ public class ReservaDTO {
 
     @NotNull(message = "La política de cancelación no puede ser nula")
     @NotBlank(message = "La política de cancelación no puede estar vacía")
-    String politicaCancelacion;
+    private String politicaCancelacion;
 
     @NotNull(message = "La categoría no puede ser nula")
     @NotBlank(message = "La categoría no puede estar vacía")
-    String categoriaServicio;
+    private String categoriaServicio;
 
     @NotBlank(message = "La modalidad es obligatoria")
     @Pattern(regexp = "Presencial|Online", message = "El campo modalidad debe ser PRESENCIAL u ONLINE")
@@ -33,44 +33,47 @@ public class ReservaDTO {
 
     @NotNull(message = "La ubicación no puede ser nula")
     @NotBlank(message = "La ubicación no puede estar vacía")
-    String ubicacion;
+    private String ubicacion;
 
     @NotNull(message = "El título del servicio no puede ser nulo")
     @NotBlank(message = "El título del servicio no puede estar vacío")
-    String tituloServicio;
+    private String tituloServicio;
 
     @NotNull(message = "La fecha de reserva no puede ser nula")
-    LocalDate fechaReserva;
+    private LocalDate fechaReserva;
 
     @NotNull(message = "La descripción del servicio no puede ser nula")
     @NotBlank(message = "La descripción del servicio no puede estar vacía")
-    String descripcionServicio;
+    private String descripcionServicio;
 
     @NotNull(message = "La duración no puede ser nula")
     @Min(value = 30, message = "La duración mínima es de 30 minutos")    
-    Integer duracionServicio; //Duración en minutos. Minimo 30 minutos
+    private Integer duracionServicio; //Duración en minutos. Minimo 30 minutos
     
     @NotNull(message = "El precio no puede ser nulo")
     @Digits(integer = 10, fraction = 2)
-    BigDecimal precio;
+    private BigDecimal precio;
 
     @NotNull(message = "El total pagado no puede ser nulo")
     @Digits(integer = 10, fraction = 2)
-    BigDecimal totalPagado;
+    private BigDecimal totalPagado;
 
     //Llave foránea para identificar al cliente que realiza la reserva.
     @NotNull(message = "El id del cliente no puede ser nulo")
-    Long clienteId;
+    private Long clienteId;
 
     //Llave foránea para identificar al proveedor que ofrece el servicio.
     @NotNull(message = "El id del proveedor no puede ser nulo")
-    Long proveedorId;
+    private Long proveedorId;
+
+    @NotNull(message = "El id del servicio no puede ser nulo")
+    private Long servicioId;
 
     @NotNull(message = "Debe realizarse el pago de la reserva")
-    Boolean esPagada;
+    private Boolean esPagada;
 
 
-    EstadoReserva estadoReserva;
+    private EstadoReserva estadoReserva;
 
 
     public ReservaDTO() {
@@ -181,6 +184,14 @@ public class ReservaDTO {
         this.proveedorId = proveedorId;
     }
 
+    public Long getServicioId() {
+        return servicioId;
+    }
+
+    public void setServicioId(Long servicioId) {
+        this.servicioId = servicioId;
+    }
+
     public String getPoliticaCancelacion() {
         return politicaCancelacion;
     }
@@ -197,7 +208,7 @@ public class ReservaDTO {
         this.estadoReserva = estadoReserva;
     }
 
-    public Boolean esPagada() {
+    public Boolean getEsPagada() {
         return esPagada;
     }
 

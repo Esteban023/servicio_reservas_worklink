@@ -33,7 +33,7 @@ public class ServicioReserva {
 
     public ResultadoOperacion<Reserva> crearReserva(ReservaDTO reservaDTO) {
 
-        if (!reservaDTO.esPagada()) {
+        if (!reservaDTO.getEsPagada()) {
             return ResultadoOperacion.fallo("El pago es obligatorio.", 400);
         }
 

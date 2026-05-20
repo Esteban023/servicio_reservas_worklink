@@ -30,6 +30,9 @@ public class Reserva {
     @Column(name = "cliente_id", nullable = false)
     private Long clienteId;
 
+    @Column(name = "servicio_id", nullable = false)
+    private Long servicioId;
+
     @Column(name = "modalidad", nullable = false)
     private String modalidad; //PRESENCIAL u ONLINE
 
@@ -119,6 +122,14 @@ public class Reserva {
 
     public void setClienteId(Long clienteId) {
         this.clienteId = clienteId;
+    }
+
+    public Long getServicioId() {
+        return servicioId;
+    }
+
+    public void setServicioId(Long servicioId) {
+        this.servicioId = servicioId;
     }
 
     public String getModalidad() {

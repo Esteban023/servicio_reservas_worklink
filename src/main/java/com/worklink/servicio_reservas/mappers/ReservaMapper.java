@@ -16,6 +16,7 @@ public class ReservaMapper {
         reserva.setCategoriaServicio(reservaDTO.getCategoriaServicio());
         reserva.setProveedorId(reservaDTO.getProveedorId());
         reserva.setClienteId(reservaDTO.getClienteId());
+        reserva.setServicioId(reservaDTO.getServicioId());
         reserva.setDescripcionServicio(reservaDTO.getDescripcionServicio());
         reserva.setDuracionServicio(reservaDTO.getDuracionServicio());
         reserva.setTituloServicio(reservaDTO.getTituloServicio());
@@ -36,6 +37,7 @@ public class ReservaMapper {
         dto.setCategoriaServicio(reserva.getCategoriaServicio());
         dto.setProveedorId(reserva.getProveedorId());
         dto.setClienteId(reserva.getClienteId());
+        dto.setServicioId(reserva.getServicioId());
         dto.setDescripcionServicio(reserva.getDescripcionServicio());
         dto.setDuracionServicio(reserva.getDuracionServicio());
         dto.setRangoTiempoReservado(reserva.getRangoTiempoReservado());
